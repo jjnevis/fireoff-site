@@ -2965,13 +2965,13 @@ Opal.modules["opal-jquery"] = function(Opal) {
     Opal.const_get_relative($nesting, 'Element').$find("body").$css("font-size", "" + ($rb_divide(self.width, 25)) + "px");
     $send(Opal.const_get_relative($nesting, 'Element').$find("#offNow"), 'on', ["click"], (TMP_2 = function(event){var self = TMP_2.$$s || this;
 if (event == null) event = nil;
-    return self.$forward_url("sms:07860055401?body=52226%20off%204")}, TMP_2.$$s = self, TMP_2.$$arity = 1, TMP_2));
+    return self.$forward_url("sms:07860055401?body=52226 off 4")}, TMP_2.$$s = self, TMP_2.$$arity = 1, TMP_2));
     $send(Opal.const_get_relative($nesting, 'Element').$find("#onNow"), 'on', ["click"], (TMP_3 = function(event){var self = TMP_3.$$s || this;
 if (event == null) event = nil;
-    return self.$forward_url("sms:07860055401?body=52226%20on%204")}, TMP_3.$$s = self, TMP_3.$$arity = 1, TMP_3));
+    return self.$forward_url("sms:07860055401?body=52226 on 4")}, TMP_3.$$s = self, TMP_3.$$arity = 1, TMP_3));
     return (Opal.def(self, '$forward_url', TMP_forward_url_4 = function $$forward_url(url) {
       var self = this;
 
-      return window.location = url
+      return window.location = encodeURI(url)
     }, TMP_forward_url_4.$$arity = 1), nil) && 'forward_url';}, TMP_1.$$s = self, TMP_1.$$arity = 0, TMP_1));
 })(Opal);
