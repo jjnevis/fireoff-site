@@ -2938,9 +2938,12 @@ Opal.modules["opal-jquery"] = function(Opal) {
   function $rb_minus(lhs, rhs) {
     return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs - rhs : lhs['$-'](rhs);
   }
+  function $rb_divide(lhs, rhs) {
+    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs / rhs : lhs['$/'](rhs);
+  }
   var TMP_1, self = Opal.top, $nesting = [], nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $send = Opal.send;
 
-  Opal.add_stubs(['$require', '$ready?', '$find', '$text=', '$-', '$on', '$alert', '$puts']);
+  Opal.add_stubs(['$require', '$ready?', '$find', '$text=', '$-', '$height', '$width', '$css', '$/', '$on', '$puts', '$text', '$element']);
   
   self.$require("opal-jquery");
   return $send(Opal.const_get_relative($nesting, 'Document'), 'ready?', [], (TMP_1 = function(){var self = TMP_1.$$s || this, TMP_2, header = nil, $writer = nil;
@@ -2953,18 +2956,14 @@ Opal.modules["opal-jquery"] = function(Opal) {
     $writer = ["FireOff Web"];
     $send(header, 'text=', Opal.to_a($writer));
     $writer[$rb_minus($writer["length"], 1)];;
-    self.height = $(window).height();
+    self.height = Opal.const_get_relative($nesting, 'Document').$height();
+    self.width = Opal.const_get_relative($nesting, 'Document').$width();
     
-    $writer = ["" + "Height: " + (self.height)];
-    $send(Opal.const_get_relative($nesting, 'Document').$find("#height"), 'text=', Opal.to_a($writer));
+    $writer = ["" + "Height: " + (self.height) + ", Width: " + (self.width)];
+    $send(Opal.const_get_relative($nesting, 'Document').$find("#info"), 'text=', Opal.to_a($writer));
     $writer[$rb_minus($writer["length"], 1)];;
-    self.width = $(window).width();
-    
-    $writer = ["" + "Width: " + (self.width)];
-    $send(Opal.const_get_relative($nesting, 'Document').$find("#width"), 'text=', Opal.to_a($writer));
-    $writer[$rb_minus($writer["length"], 1)];;
-    $send(Opal.const_get_relative($nesting, 'Element').$find("#height"), 'on', ["click"], (TMP_2 = function(){var self = TMP_2.$$s || this;
-
-    return self.$alert("The height was clicked!")}, TMP_2.$$s = self, TMP_2.$$arity = 0, TMP_2));
-    return self.$puts("End of document ready");}, TMP_1.$$s = self, TMP_1.$$arity = 0, TMP_1));
+    Opal.const_get_relative($nesting, 'Element').$find("tr").$css("height", $rb_divide(self.height, 16));
+    return $send(Opal.const_get_relative($nesting, 'Element').$find("td"), 'on', ["click"], (TMP_2 = function(event){var self = TMP_2.$$s || this;
+if (event == null) event = nil;
+    return self.$puts("" + "The " + (event.$element().$text()) + " was clicked!")}, TMP_2.$$s = self, TMP_2.$$arity = 1, TMP_2));}, TMP_1.$$s = self, TMP_1.$$arity = 0, TMP_1));
 })(Opal);
