@@ -2972,6 +2972,6 @@ if (event == null) event = nil;
     return (Opal.def(self, '$forward_url', TMP_forward_url_4 = function $$forward_url(url) {
       var self = this;
 
-      return window.location = url
+      return window.location = encodeURI(url)
     }, TMP_forward_url_4.$$arity = 1), nil) && 'forward_url';}, TMP_1.$$s = self, TMP_1.$$arity = 0, TMP_1));
 })(Opal);

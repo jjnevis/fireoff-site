@@ -1,5 +1,4 @@
 require 'opal-jquery'
-require 'uri'
 
 Document.ready? do
 
@@ -21,8 +20,7 @@ Document.ready? do
   end
 
   def forward_url url
-    encoded_url = URI.encode(url)
-    `window.location = #{encoded_url}`
+    `window.location = encodeURI(#{url})`
   end
   # Element.find('td').on :click do |event|
   #   puts "The #{event.element.text} was clicked!"
