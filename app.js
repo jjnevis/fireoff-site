@@ -3355,7 +3355,7 @@ Opal.modules["pin_code"] = function(Opal) {
   }
   var TMP_1, self = Opal.top, $nesting = [], nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $send = Opal.send;
 
-  Opal.add_stubs(['$require', '$ready?', '$height', '$width', '$new', '$find', '$+', '$text=', '$-', '$css', '$/', '$on', '$forward_url', '$hour_from', '$min_from', '$hour_to', '$min_to', '$element', '$text', '$hour_from=', '$puts', '$min_from=', '$hour_to=', '$min_to=']);
+  Opal.add_stubs(['$require', '$ready?', '$height', '$width', '$new', '$find', '$+', '$text=', '$-', '$css', '$/', '$on', '$forward_url', '$hour_from', '$min_from', '$hour_to', '$min_to', '$element', '$text', '$hour_from=', '$min_from=', '$hour_to=', '$min_to=', '$puts', '$code=', '$sms_message']);
   
   self.$require("opal-jquery");
   self.$require("text");
@@ -3364,7 +3364,7 @@ Opal.modules["pin_code"] = function(Opal) {
   Opal.const_set($nesting[0], 'ACTIVE_COLOUR', "#FFDD10");
   Opal.const_set($nesting[0], 'INACTIVE_COLOUR', "#DDD");
   Opal.const_set($nesting[0], 'MINS', [":00", ":15", ":30", ":45"]);
-  return $send(Opal.const_get_relative($nesting, 'Document'), 'ready?', [], (TMP_1 = function(){var self = TMP_1.$$s || this, TMP_2, TMP_3, TMP_4, TMP_5, TMP_6, TMP_7, TMP_forward_url_8, header = nil, $writer = nil;
+  return $send(Opal.const_get_relative($nesting, 'Document'), 'ready?', [], (TMP_1 = function(){var self = TMP_1.$$s || this, TMP_2, TMP_3, TMP_4, TMP_5, TMP_6, TMP_7, TMP_8, TMP_forward_url_9, header = nil, $writer = nil;
     if (self.height == null) self.height = nil;
     if (self.width == null) self.width = nil;
     if (self.text == null) self.text = nil;
@@ -3382,10 +3382,10 @@ Opal.modules["pin_code"] = function(Opal) {
     Opal.const_get_relative($nesting, 'Element').$find("body").$css("font-size", "" + ($rb_divide(self.width, 25)) + "px");
     $send(Opal.const_get_relative($nesting, 'Element').$find("#offNow"), 'on', ["click"], (TMP_2 = function(event){var self = TMP_2.$$s || this;
 if (event == null) event = nil;
-    return self.$forward_url("sms:07860055401?body=52226 off 4")}, TMP_2.$$s = self, TMP_2.$$arity = 1, TMP_2));
+    return self.$forward_url("OFF")}, TMP_2.$$s = self, TMP_2.$$arity = 1, TMP_2));
     $send(Opal.const_get_relative($nesting, 'Element').$find("#onNow"), 'on', ["click"], (TMP_3 = function(event){var self = TMP_3.$$s || this;
 if (event == null) event = nil;
-    return self.$forward_url("sms:07860055401?body=52226 on 4")}, TMP_3.$$s = self, TMP_3.$$arity = 1, TMP_3));
+    return self.$forward_url("ON")}, TMP_3.$$s = self, TMP_3.$$arity = 1, TMP_3));
     Opal.const_get_relative($nesting, 'Element').$find("" + "#fh" + (self.text.$hour_from())).$css("background-color", Opal.const_get_relative($nesting, 'ACTIVE_COLOUR'));
     Opal.const_get_relative($nesting, 'Element').$find("" + "#fm" + (self.text.$min_from())).$css("background-color", Opal.const_get_relative($nesting, 'ACTIVE_COLOUR'));
     Opal.const_get_relative($nesting, 'Element').$find("" + "#th" + (self.text.$hour_to())).$css("background-color", Opal.const_get_relative($nesting, 'ACTIVE_COLOUR'));
@@ -3399,8 +3399,7 @@ if (event == null) event = nil;
       
       $writer = [event.$element().$text()];
       $send(self.text, 'hour_from=', Opal.to_a($writer));
-      $writer[$rb_minus($writer["length"], 1)];;
-      return self.$puts("" + "clicked a fh!**" + (event.$element().$text()) + "**");}, TMP_4.$$s = self, TMP_4.$$arity = 1, TMP_4));
+      return $writer[$rb_minus($writer["length"], 1)];;}, TMP_4.$$s = self, TMP_4.$$arity = 1, TMP_4));
     $send(Opal.const_get_relative($nesting, 'Element').$find(".fm"), 'on', ["click"], (TMP_5 = function(event){var self = TMP_5.$$s || this;
       if (self.text == null) self.text = nil;
 if (event == null) event = nil;
@@ -3431,13 +3430,24 @@ if (event == null) event = nil;
       $writer = [event.$element().$text()];
       $send(self.text, 'min_to=', Opal.to_a($writer));
       return $writer[$rb_minus($writer["length"], 1)];;}, TMP_7.$$s = self, TMP_7.$$arity = 1, TMP_7));
+    $send(Opal.const_get_relative($nesting, 'Element').$find(".book"), 'on', ["click"], (TMP_8 = function(event){var self = TMP_8.$$s || this;
+if (event == null) event = nil;
+    return self.$forward_url(event.$element().$text())}, TMP_8.$$s = self, TMP_8.$$arity = 1, TMP_8));
     self.$puts(self.text.$hour_from());
     self.$puts(self.text.$min_from());
     self.$puts(self.text.$hour_to());
     self.$puts(self.text.$min_to());
-    return (Opal.def(self, '$forward_url', TMP_forward_url_8 = function $$forward_url(url) {
-      var self = this;
+    return (Opal.def(self, '$forward_url', TMP_forward_url_9 = function $$forward_url(code) {
+      var self = this, $writer = nil, url = nil;
+      if (self.text == null) self.text = nil;
 
-      return window.location = encodeURI(url)
-    }, TMP_forward_url_8.$$arity = 1), nil) && 'forward_url';}, TMP_1.$$s = self, TMP_1.$$arity = 0, TMP_1));
+      
+      
+      $writer = [code];
+      $send(self.text, 'code=', Opal.to_a($writer));
+      $writer[$rb_minus($writer["length"], 1)];;
+      url = "" + "sms:07860055401?body=" + (self.text.$sms_message());
+      self.$puts(url);
+      return window.location = encodeURI(url);
+    }, TMP_forward_url_9.$$arity = 1), nil) && 'forward_url';}, TMP_1.$$s = self, TMP_1.$$arity = 0, TMP_1));
 })(Opal);

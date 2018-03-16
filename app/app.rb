@@ -20,11 +20,11 @@ Document.ready? do
   Element.find('body').css('font-size', "#{@width/25}px")
 
   Element.find('#offNow').on :click do |event|
-    forward_url "sms:07860055401?body=52226 off 4"
+    forward_url 'OFF'
   end
 
   Element.find('#onNow').on :click do |event|
-    forward_url "sms:07860055401?body=52226 on 4"
+    forward_url 'ON'
   end
 
   Element.find("#fh#{@text.hour_from}").css "background-color", ACTIVE_COLOUR
@@ -36,7 +36,6 @@ Document.ready? do
     event.element.css "background-color", ACTIVE_COLOUR
     Element.find("#fh#{@text.hour_from}").css "background-color", INACTIVE_COLOUR
     @text.hour_from = event.element.text
-    puts "clicked a fh!**#{event.element.text}**"
   end
   Element.find('.fm').on :click do |event|
     event.element.css "background-color", ACTIVE_COLOUR
@@ -59,12 +58,61 @@ Document.ready? do
   #   event.element.css "background-color", ACTIVE_COLOUR
   # end
 
+  Element.find('.book').on :click do |event|
+    forward_url event.element.text
+  end
+
+  # def send_formatted_message
+  #   if Settings.setup?
+  #     if @text.dates_wonky?
+  #       App.alert "TO date cannot be before FROM date"
+  #     else
+  #       if @text.sanity?
+  #         BW::UIAlertView.new({
+  #           title:  @text.sanity,
+  #           buttons: ['Cancel', 'OK'],
+  #           cancel_button_index: 0
+  #         }) do |alert|
+  #           unless alert.clicked_button.cancel?
+  #             send_sms
+  #           end
+  #         end.show
+  #       else
+  #         send_sms
+  #       end
+  #     end
+  #   else
+  #     App.alert "You must set up your Pin Number and SMS Number by visiting the settings page"
+  #   end
+  # end
+
+  # def send_sms
+  #   MFMessageComposeViewController.alloc.init.tap do |sms|
+  #     sms.messageComposeDelegate = self
+  #     sms.recipients = [Settings.sms_number]
+  #     sms.body = @text.sms_message
+  #     self.presentModalViewController(sms, animated:true)
+  #   end if MFMessageComposeViewController.canSendText
+  # end
+
+  # def messageComposeViewController(controller, didFinishWithResult:result)
+  #   NSLog("SMS Result: #{result}")
+  #   controller.dismissModalViewControllerAnimated(true)
+  #   if result == 1
+  #     App.alert "Please check your messages for successfull delivery and a response message" if Settings.sms_check?
+  #   end
+  # end
+
   puts @text.hour_from
   puts @text.min_from
   puts @text.hour_to
   puts @text.min_to
 
-  def forward_url url
+  def forward_url code
+    @text.code = code
+    url = "sms:07860055401?body=#{@text.sms_message}"
+    puts url
+
     `window.location = encodeURI(#{url})`
   end
 
