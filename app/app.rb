@@ -2,21 +2,28 @@ require 'opal-jquery'
 
 Document.ready? do
 
-  header = Document.find('#header')
-  header.text = "FireOff Web"
-
   @height = Document.height
   @width  = Document.width
-  Document.find('#info').text = "Height: #{@height}, Width: #{@width}"
+
+  header = Document.find('#header')
+  header.text = "FireOff Web" + " (H:#{@height} W:#{@width})"
 
   Element.find('tr').css('height', @height/16)
+  Element.find('body').css('font-size', "#{@width/25}px")
 
-  Element.find('td').on :click do |event|
-    puts "The #{event.element.text} was clicked!"
+  Element.find('#offNow').on :click do |event|
+    forward_url "sms:07860055401?body=52226 off 4"
   end
 
-  # Document.on :click do |evt|
-  #   puts "clicked on: #{evt.current_target.name}"
+  Element.find('#onNow').on :click do |event|
+    forward_url "sms:07860055401?body=52226 on 4"
+  end
+
+  def forward_url url
+    `window.location = #{url}`
+  end
+  # Element.find('td').on :click do |event|
+  #   puts "The #{event.element.text} was clicked!"
   # end
 
 end
