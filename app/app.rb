@@ -12,15 +12,15 @@ Document.ready? do
   Element.find('body').css('font-size', "#{@width/25}px")
 
   Element.find('#offNow').on :click do |event|
-    forward_url "sms:07860055401?body=52226 off 4"
+    forward_url 'sms:07860055401?body=52226%20off%204'
   end
 
   Element.find('#onNow').on :click do |event|
-    forward_url "sms:07860055401?body=52226 on 4"
+    forward_url 'sms:07860055401?body=52226%20on%204'
   end
 
   def forward_url url
-    `window.location = encodeURI(#{url})`
+    `window.location = #{url}`
   end
   # Element.find('td').on :click do |event|
   #   puts "The #{event.element.text} was clicked!"
