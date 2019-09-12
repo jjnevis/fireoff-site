@@ -67,7 +67,7 @@ Document.ready? do
     forward_url event.element.text
   end
 
-  @debug.text = LocalStorage['tel']
+  # @debug.text = LocalStorage['tel']
 
 
   def forward_url code

@@ -3104,18 +3104,17 @@ Opal.modules["text"] = function(Opal) {
   }
   var TMP_1, self = Opal.top, $nesting = [], nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $send = Opal.send;
 
-  Opal.add_stubs(['$require', '$ready?', '$height', '$width', '$new', '$find', '$css', '$/', '$on', '$forward_url', '$text', '$element', '$sms_message', '$text=', '$-', '$hour_from', '$min_from', '$hour_to', '$min_to', '$hour_from=', '$min_from=', '$hour_to=', '$min_to=', '$[]', '$value', '$pin_code=', '$code=']);
+  Opal.add_stubs(['$require', '$ready?', '$height', '$width', '$new', '$find', '$css', '$/', '$on', '$forward_url', '$text', '$element', '$sms_message', '$text=', '$-', '$hour_from', '$min_from', '$hour_to', '$min_to', '$hour_from=', '$min_from=', '$hour_to=', '$min_to=', '$value', '$pin_code=', '$code=']);
   
   self.$require("opal-jquery");
   self.$require("opal/jquery/local_storage");
   self.$require("text");
   Opal.const_set($nesting[0], 'ACTIVE_COLOUR', "#FFDD10");
   Opal.const_set($nesting[0], 'INACTIVE_COLOUR', "#DDD");
-  return $send(Opal.const_get_relative($nesting, 'Document'), 'ready?', [], (TMP_1 = function(){var self = TMP_1.$$s || this, TMP_2, TMP_3, TMP_4, TMP_5, TMP_6, TMP_7, TMP_forward_url_8, $writer = nil;
+  return $send(Opal.const_get_relative($nesting, 'Document'), 'ready?', [], (TMP_1 = function(){var self = TMP_1.$$s || this, TMP_2, TMP_3, TMP_4, TMP_5, TMP_6, TMP_7, TMP_forward_url_8;
     if (self.height == null) self.height = nil;
     if (self.width == null) self.width = nil;
     if (self.text == null) self.text = nil;
-    if (self.debug == null) self.debug = nil;
 
   
     self.height = Opal.const_get_relative($nesting, 'Document').$height();
@@ -3201,10 +3200,6 @@ if (event == null) event = nil;
     $send(Opal.const_get_relative($nesting, 'Element').$find(".book"), 'on', ["click"], (TMP_7 = function(event){var self = TMP_7.$$s || this;
 if (event == null) event = nil;
     return self.$forward_url(event.$element().$text())}, TMP_7.$$s = self, TMP_7.$$arity = 1, TMP_7));
-    
-    $writer = [Opal.const_get_relative($nesting, 'LocalStorage')['$[]']("tel")];
-    $send(self.debug, 'text=', Opal.to_a($writer));
-    $writer[$rb_minus($writer["length"], 1)];;
     return (Opal.def(self, '$forward_url', TMP_forward_url_8 = function $$forward_url(code) {
       var self = this, tel = nil, $writer = nil, url = nil;
       if (self.text == null) self.text = nil;
