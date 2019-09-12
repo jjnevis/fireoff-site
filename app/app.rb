@@ -71,7 +71,7 @@ Document.ready? do
 
 
   def forward_url code
-    update_static_data
+    # update_static_data
 
     tel = Element.find('#tel').value
 
@@ -83,9 +83,9 @@ Document.ready? do
     `window.location = encodeURI(#{url})`
   end
 
-  def update_static_data
-    LocalStorage['tel'] = Element.find('#tel').value
-    LocalStorage['pin'] = Element.find('#pin').value
-  end
+  # def update_static_data
+  #   LocalStorage['tel'] = Element.find('#tel').value
+  #   LocalStorage['pin'] = Element.find('#pin').value
+  # end
 
 end
