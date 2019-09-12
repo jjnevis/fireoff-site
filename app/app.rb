@@ -76,7 +76,7 @@ Document.ready? do
     console.log(document.cookie);
     }
 
-  @debug.text = `getCookie("username")`
+  @debug.text = `getCookie("username");`
 
   def forward_url code
     if Element.find('#tel').value.length > 0

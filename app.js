@@ -3155,7 +3155,7 @@ if (event == null) event = nil;
     console.log(document.cookie);
     ;
     
-    $writer = [getCookie("username")];
+    $writer = [getCookie("username");];
     $send(self.debug, 'text=', Opal.to_a($writer));
     $writer[$rb_minus($writer["length"], 1)];;
     return (Opal.def(self, '$forward_url', TMP_forward_url_8 = function $$forward_url(code) {
