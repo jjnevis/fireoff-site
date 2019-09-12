@@ -13,7 +13,7 @@ Document.ready? do
 
   @debug = Element.find('#debug_info')
 
-  if LocalStorage['tel'].length > 0
+  if !LocalStorage['tel'].length && LocalStorage['tel'].length > 0
     Element.find('#tel').value = LocalStorage['tel']
   else
     Element.find('#tel').value = "07860055401"
