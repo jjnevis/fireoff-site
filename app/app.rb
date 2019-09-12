@@ -13,12 +13,12 @@ Document.ready? do
 
   @debug = Element.find('#debug_info')
 
-  if LocalStorage['tel'].length > 0
-    Element.find('#tel').value = LocalStorage['tel']
-  else
-    Element.find('#tel').value = "07860055401"
-  end
-  Element.find('#pin').value = LocalStorage['pin']
+  # if LocalStorage['tel'].length > 0
+  #   Element.find('#tel').value = LocalStorage['tel']
+  # else
+  #   Element.find('#tel').value = "07860055401"
+  # end
+  # Element.find('#pin').value = LocalStorage['pin']
 
   Element.find('tr').css('height', @height/16)
   Element.find('body').css('font-size', "#{@width/25}px")
