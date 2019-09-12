@@ -3128,6 +3128,13 @@ Opal.modules["text"] = function(Opal) {
       $send(Opal.const_get_relative($nesting, 'LocalStorage'), '[]=', Opal.to_a($writer));
       $writer[$rb_minus($writer["length"], 1)];
     };
+    if ($truthy(Opal.const_get_relative($nesting, 'LocalStorage')['$[]']("tel"))) {
+      } else {
+      
+      $writer = ["pin", "00000"];
+      $send(Opal.const_get_relative($nesting, 'LocalStorage'), '[]=', Opal.to_a($writer));
+      $writer[$rb_minus($writer["length"], 1)];
+    };
     
     $writer = [Opal.const_get_relative($nesting, 'LocalStorage')['$[]']("tel")];
     $send(Opal.const_get_relative($nesting, 'Element').$find("#tel"), 'value=', Opal.to_a($writer));

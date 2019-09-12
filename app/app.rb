@@ -14,6 +14,7 @@ Document.ready? do
   @debug = Element.find('#debug_info')
 
   LocalStorage['tel'] = "07860055401" unless LocalStorage['tel']
+  LocalStorage['pin'] = "00000" unless LocalStorage['tel']
 
   Element.find('#tel').value = LocalStorage['tel']
   Element.find('#pin').value = LocalStorage['pin']
