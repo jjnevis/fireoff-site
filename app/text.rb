@@ -12,24 +12,24 @@ class Text
   CODES = {"O" => "OFF", "W" => "Work", "S" => "Sick", "T" => "Training", "DEL" => "Deletion"}
 
   def initialize
-    @pin_code = PinCode.new
+    @pin_code = '52226'
 
     t = Time.now
     @time = t-t.sec - t.min%15*60 + 15*60
 
     @hour_from = @time.hour
-    @min_from = mindex @time.min
+    @min_from = @time.min
 
     time_to = @time+(60*60*Settings.def_hours.to_f)
     @hour_to = time_to.hour
-    @min_to = mindex time_to.min
+    @min_to = time_to.min
   end
 
   def sms_message
     if quick_fire?
-      "#{@pin_code.pin} #{code}"
+      "#{@pin_code} #{code}"
     else
-      "#{@pin_code.pin} #{date_from.strftime("%d%m%y")} #{date_from.strftime("%H%M")} #{date_to.strftime("%d%m%y")} #{date_to.strftime("%H%M")} #{code}"
+      "#{@pin_code} #{date_from.strftime("%d%m%y")} #{date_from.strftime("%H%M")} #{date_to.strftime("%d%m%y")} #{date_to.strftime("%H%M")} #{code}"
     end
   end
 
@@ -42,9 +42,9 @@ class Text
     date_from >= date_to
   end
 
-  def display_name
-    Settings.pin_codes.count > 1 ? @pin_code.name : nil
-  end
+  # def display_name
+  #   Settings.pin_codes.count > 1 ? @pin_code.name : nil
+  # end
 
   def sanity?
     !quick_fire? && Settings.sanity?
@@ -76,7 +76,7 @@ class Text
   end
 
   def date_from
-    from_hours = (hour_from.to_f + min_from.to_f/4)
+    from_hours = hour_from.to_f + min_from.to_f/60
     now_hours = @time.hour.to_f + @time.min.to_f/60
     diff_hours = from_hours - now_hours
     if day_from
@@ -92,7 +92,7 @@ class Text
   end
 
   def date_to
-    to_hours = hour_to.to_f + min_to.to_f/4
+    to_hours = hour_to.to_f + min_to.to_f/60
     then_hours = date_from.hour.to_f + date_from.min.to_f/60
     diff_hours = to_hours - then_hours
     if day_to
@@ -125,11 +125,6 @@ class Text
 
   def date_today
     Time.new.start_of_day
-  end
-
-  def mindex(mins)
-    {0 => 0, 15 => 1, 30 => 2, 45 => 3}[mins]
-    mins
   end
 
 end
