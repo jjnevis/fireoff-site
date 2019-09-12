@@ -1,4 +1,5 @@
 require 'opal-jquery'
+require 'opal/jquery/local_storage'
 require 'text'
 
 ACTIVE_COLOUR = '#FFDD10'
@@ -12,8 +13,12 @@ Document.ready? do
 
   @debug = Element.find('#debug_info')
 
-  # header = Document.find('#header')
-  # header.text = "FireOff Web" + " (H:#{@height} W:#{@width})"
+  if LocalStorage['tel'].length > 0
+    Element.find('#tel').value = LocalStorage['tel']
+  else
+    Element.find('#tel').value = "07860055401"
+  end
+  Element.find('#pin').value = LocalStorage['pin']
 
   Element.find('tr').css('height', @height/16)
   Element.find('body').css('font-size', "#{@width/25}px")
@@ -62,58 +67,25 @@ Document.ready? do
     forward_url event.element.text
   end
 
-  %x{
-      function setCookie(cname,cvalue,exdays) {
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        var expires = "expires=" + d.toGMTString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-      }
+  @debug.text = LocalStorage['tel']
 
-      function getCookie(cname) {
-        var name = cname + "=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for(var i = 0; i < ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return "";
-      }
-
-      function checkCookie() {
-        var user=getCookie("username");
-        if (user != "") {
-          alert("Welcome again " + user);
-        } else {
-           user = prompt("Please enter your name:","");
-           if (user != "" && user != null) {
-             setCookie("username", user, 30);
-           }
-        }
-      }
-      checkCookie();
-    }
-
-  # @debug.text = `getCookie("username");`
 
   def forward_url code
-    if Element.find('#tel').value.length > 0
-      tel = Element.find('#tel').value
-    else
-      tel = "07860055401"
-    end
+    update_static_data
+
+    tel = Element.find('#tel').value
+
     @text.pin_code = Element.find('#pin').value
 
     @text.code = code
     url = "sms:#{tel}?body=#{@text.sms_message}"
 
     `window.location = encodeURI(#{url})`
+  end
+
+  def update_static_data
+    LocalStorage['tel'] = Element.find('#tel').value
+    LocalStorage['pin'] = Element.find('#pin').value
   end
 
 end
