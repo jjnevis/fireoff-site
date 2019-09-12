@@ -13,12 +13,12 @@ Document.ready? do
 
   @debug = Element.find('#debug_info')
 
-  # if LocalStorage['tel'].length > 0
-  #   Element.find('#tel').value = LocalStorage['tel']
-  # else
-  #   Element.find('#tel').value = "07860055401"
-  # end
-  # Element.find('#pin').value = LocalStorage['pin']
+  if LocalStorage['tel'].length > 0
+    Element.find('#tel').value = LocalStorage['tel']
+  else
+    Element.find('#tel').value = "07860055401"
+  end
+  Element.find('#pin').value = LocalStorage['pin']
 
   Element.find('tr').css('height', @height/16)
   Element.find('body').css('font-size', "#{@width/25}px")
@@ -67,11 +67,8 @@ Document.ready? do
     forward_url event.element.text
   end
 
-  # @debug.text = LocalStorage['tel']
-
-
   def forward_url code
-    # update_static_data
+    update_static_data
 
     tel = Element.find('#tel').value
 
@@ -83,9 +80,9 @@ Document.ready? do
     `window.location = encodeURI(#{url})`
   end
 
-  # def update_static_data
-  #   LocalStorage['tel'] = Element.find('#tel').value
-  #   LocalStorage['pin'] = Element.find('#pin').value
-  # end
+  def update_static_data
+    LocalStorage['tel'] = Element.find('#tel').value
+    LocalStorage['pin'] = Element.find('#pin').value
+  end
 
 end
