@@ -2927,23 +2927,23 @@ Opal.modules["text"] = function(Opal) {
   function $rb_ge(lhs, rhs) {
     return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs >= rhs : lhs['$>='](rhs);
   }
-  function $rb_lt(lhs, rhs) {
-    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs < rhs : lhs['$<'](rhs);
-  }
   function $rb_divide(lhs, rhs) {
     return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs / rhs : lhs['$/'](rhs);
+  }
+  function $rb_lt(lhs, rhs) {
+    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs < rhs : lhs['$<'](rhs);
   }
   function $rb_le(lhs, rhs) {
     return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs <= rhs : lhs['$<='](rhs);
   }
-  var self = Opal.top, $nesting = [], nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $klass = Opal.klass, $hash2 = Opal.hash2, $truthy = Opal.truthy;
+  var self = Opal.top, $nesting = [], nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $klass = Opal.klass, $truthy = Opal.truthy, $hash2 = Opal.hash2;
 
-  Opal.add_stubs(['$attr_accessor', '$now', '$+', '$-', '$sec', '$*', '$%', '$min', '$hour', '$to_f', '$def_hours', '$quick_fire?', '$code', '$strftime', '$date_from', '$date_to', '$display_name', '$[]', '$sanity_day', '$>=', '$!', '$sanity?', '$yday', '$<', '$===', '$include?', '$sanity', '$sms_message', '$hour_from', '$/', '$min_from', '$day_from', '$delta', '$date_today', '$new', '$year', '$month', '$day', '$hour_to', '$min_to', '$day_to', '$<=', '$capitalize', '$start_of_day']);
+  Opal.add_stubs(['$attr_accessor', '$now', '$+', '$-', '$sec', '$*', '$%', '$min', '$hour', '$to_f', '$def_hours', '$quick_fire?', '$code', '$strftime', '$date_from', '$date_to', '$>=', '$include?', '$[]', '$hour_from', '$/', '$min_from', '$day_from', '$delta', '$date_today', '$new', '$year', '$month', '$day', '$<', '$hour_to', '$min_to', '$day_to', '$<=', '$start_of_day']);
   return (function($base, $super, $parent_nesting) {
     function $Text(){};
     var self = $Text = $klass($base, $super, 'Text', $Text);
 
-    var def = self.$$proto, $nesting = [self].concat($parent_nesting), TMP_Text_initialize_1, TMP_Text_sms_message_2, TMP_Text_sanity_3, TMP_Text_dates_wonky$q_4, TMP_Text_sanity$q_5, TMP_Text_sanity_day_6, TMP_Text_quick_fire$q_7, TMP_Text_full_message_8, TMP_Text_date_from_9, TMP_Text_date_to_10, TMP_Text_from_datepicker_title_11, TMP_Text_to_datepicker_title_12, TMP_Text_date_today_13;
+    var def = self.$$proto, $nesting = [self].concat($parent_nesting), TMP_Text_initialize_1, TMP_Text_sms_message_2, TMP_Text_dates_wonky$q_3, TMP_Text_quick_fire$q_4, TMP_Text_date_from_5, TMP_Text_date_to_6, TMP_Text_date_today_7;
 
     def.time = def.pin_code = nil;
     
@@ -2955,12 +2955,12 @@ Opal.modules["text"] = function(Opal) {
     self.$attr_accessor("min_to");
     self.$attr_accessor("day_from");
     self.$attr_accessor("day_to");
-    Opal.const_set($nesting[0], 'CODES', $hash2(["O", "W", "S", "T", "DEL"], {"O": "OFF", "W": "Work", "S": "Sick", "T": "Training", "DEL": "Deletion"}));
     
     Opal.defn(self, '$initialize', TMP_Text_initialize_1 = function $$initialize() {
       var self = this, t = nil, time_to = nil;
 
       
+      self.code = "O";
       self.pin_code = "52226";
       t = Opal.const_get_relative($nesting, 'Time').$now();
       self.time = $rb_plus($rb_minus($rb_minus(t, t.$sec()), $rb_times(t.$min()['$%'](15), 60)), $rb_times(15, 60));
@@ -2981,55 +2981,19 @@ Opal.modules["text"] = function(Opal) {
       }
     }, TMP_Text_sms_message_2.$$arity = 0);
     
-    Opal.defn(self, '$sanity', TMP_Text_sanity_3 = function $$sanity() {
-      var $a, self = this, user = nil;
-
-      
-      if ($truthy(self.$display_name())) {
-        user = "" + (self.$display_name()) + ": "};
-      return "" + (user) + "Booking " + (($truthy($a = Opal.const_get_relative($nesting, 'CODES')['$[]'](self.$code())) ? $a : self.$code())) + " from " + (self.$date_from().$strftime("%H%M")) + " " + (self.$sanity_day(self.$date_from())) + " until " + (self.$date_to().$strftime("%H%M")) + " " + (self.$sanity_day(self.$date_to()));
-    }, TMP_Text_sanity_3.$$arity = 0);
-    
-    Opal.defn(self, '$dates_wonky?', TMP_Text_dates_wonky$q_4 = function() {
+    Opal.defn(self, '$dates_wonky?', TMP_Text_dates_wonky$q_3 = function() {
       var self = this;
 
       return $rb_ge(self.$date_from(), self.$date_to())
-    }, TMP_Text_dates_wonky$q_4.$$arity = 0);
+    }, TMP_Text_dates_wonky$q_3.$$arity = 0);
     
-    Opal.defn(self, '$sanity?', TMP_Text_sanity$q_5 = function() {
-      var $a, self = this;
-
-      return ($truthy($a = self['$quick_fire?']()['$!']()) ? Opal.const_get_relative($nesting, 'Settings')['$sanity?']() : $a)
-    }, TMP_Text_sanity$q_5.$$arity = 0);
-    
-    Opal.defn(self, '$sanity_day', TMP_Text_sanity_day_6 = function $$sanity_day(in_date) {
-      var self = this, s_day = nil, today = nil, $case = nil;
-
-      
-      s_day = in_date.$yday();
-      today = Opal.const_get_relative($nesting, 'Time').$now().$yday();
-      if ($truthy($rb_lt(s_day, today))) {
-        s_day = $rb_plus(s_day, 365)};
-      return (function() {$case = $rb_minus(s_day, today);
-      if ((0)['$===']($case)) {return "today"}
-      else if ((1)['$===']($case)) {return "tomorrow"}
-      else if ((2)['$===']($case)) {return "the day after tomorrow"}
-      else {return in_date.$strftime("%e %B")}})();
-    }, TMP_Text_sanity_day_6.$$arity = 1);
-    
-    Opal.defn(self, '$quick_fire?', TMP_Text_quick_fire$q_7 = function() {
+    Opal.defn(self, '$quick_fire?', TMP_Text_quick_fire$q_4 = function() {
       var self = this;
 
-      return ["ON", "OFF"]['$include?'](self.$code())
-    }, TMP_Text_quick_fire$q_7.$$arity = 0);
+      return ["On", "Of"]['$include?'](self.$code()['$[]'](0, 2))
+    }, TMP_Text_quick_fire$q_4.$$arity = 0);
     
-    Opal.defn(self, '$full_message', TMP_Text_full_message_8 = function $$full_message(in_code) {
-      var self = this;
-
-      return $rb_plus($rb_plus(self.$sanity(), "\n\n"), self.$sms_message(in_code))
-    }, TMP_Text_full_message_8.$$arity = 1);
-    
-    Opal.defn(self, '$date_from', TMP_Text_date_from_9 = function $$date_from() {
+    Opal.defn(self, '$date_from', TMP_Text_date_from_5 = function $$date_from() {
       var self = this, from_hours = nil, now_hours = nil, diff_hours = nil, date = nil;
 
       
@@ -3045,9 +3009,9 @@ Opal.modules["text"] = function(Opal) {
         } else {
         return $rb_plus(self.time, $rb_times(3600, diff_hours))
       };
-    }, TMP_Text_date_from_9.$$arity = 0);
+    }, TMP_Text_date_from_5.$$arity = 0);
     
-    Opal.defn(self, '$date_to', TMP_Text_date_to_10 = function $$date_to() {
+    Opal.defn(self, '$date_to', TMP_Text_date_to_6 = function $$date_to() {
       var self = this, to_hours = nil, then_hours = nil, diff_hours = nil, date = nil;
 
       
@@ -3063,32 +3027,12 @@ Opal.modules["text"] = function(Opal) {
         } else {
         return $rb_plus(self.$date_from(), $rb_times(3600, diff_hours))
       };
-    }, TMP_Text_date_to_10.$$arity = 0);
-    
-    Opal.defn(self, '$from_datepicker_title', TMP_Text_from_datepicker_title_11 = function $$from_datepicker_title() {
-      var self = this;
-
-      if ($truthy(self.$day_from())) {
-        return "" + "From: " + ($rb_plus(Opal.const_get_relative($nesting, 'Time').$now(), $rb_times($rb_times(self.$day_from(), 3600), 24)).$strftime("%e %B"))
-        } else {
-        return "" + "From: " + (self.$sanity_day(self.$date_from()).$capitalize())
-      }
-    }, TMP_Text_from_datepicker_title_11.$$arity = 0);
-    
-    Opal.defn(self, '$to_datepicker_title', TMP_Text_to_datepicker_title_12 = function $$to_datepicker_title() {
-      var self = this;
-
-      if ($truthy(self.$day_to())) {
-        return "" + "To: " + ($rb_plus(Opal.const_get_relative($nesting, 'Time').$now(), $rb_times($rb_times(self.$day_to(), 3600), 24)).$strftime("%e %B"))
-        } else {
-        return "" + "To: " + (self.$sanity_day(self.$date_to()).$capitalize())
-      }
-    }, TMP_Text_to_datepicker_title_12.$$arity = 0);
-    return (Opal.defn(self, '$date_today', TMP_Text_date_today_13 = function $$date_today() {
+    }, TMP_Text_date_to_6.$$arity = 0);
+    return (Opal.defn(self, '$date_today', TMP_Text_date_today_7 = function $$date_today() {
       var self = this;
 
       return Opal.const_get_relative($nesting, 'Time').$new().$start_of_day()
-    }, TMP_Text_date_today_13.$$arity = 0), nil) && 'date_today';
+    }, TMP_Text_date_today_7.$$arity = 0), nil) && 'date_today';
   })($nesting[0], null, $nesting)
 };
 
@@ -3276,25 +3220,22 @@ Opal.modules["settings"] = function(Opal) {
 
 /* Generated by Opal 0.11.4 */
 (function(Opal) {
-  function $rb_plus(lhs, rhs) {
-    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs + rhs : lhs['$+'](rhs);
+  function $rb_divide(lhs, rhs) {
+    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs / rhs : lhs['$/'](rhs);
   }
   function $rb_minus(lhs, rhs) {
     return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs - rhs : lhs['$-'](rhs);
   }
-  function $rb_divide(lhs, rhs) {
-    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs / rhs : lhs['$/'](rhs);
-  }
   var TMP_1, self = Opal.top, $nesting = [], nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $send = Opal.send;
 
-  Opal.add_stubs(['$require', '$ready?', '$height', '$width', '$new', '$find', '$+', '$text=', '$-', '$css', '$/', '$on', '$forward_url', '$hour_from', '$min_from', '$hour_to', '$min_to', '$element', '$text', '$hour_from=', '$sanity', '$min_from=', '$hour_to=', '$min_to=', '$code=', '$sms_message', '$puts']);
+  Opal.add_stubs(['$require', '$ready?', '$height', '$width', '$new', '$find', '$css', '$/', '$on', '$forward_url', '$text', '$element', '$sms_message', '$text=', '$-', '$hour_from', '$min_from', '$hour_to', '$min_to', '$hour_from=', '$min_from=', '$hour_to=', '$min_to=', '$code=', '$puts']);
   
   self.$require("opal-jquery");
   self.$require("text");
   self.$require("settings");
   Opal.const_set($nesting[0], 'ACTIVE_COLOUR', "#FFDD10");
   Opal.const_set($nesting[0], 'INACTIVE_COLOUR', "#DDD");
-  return $send(Opal.const_get_relative($nesting, 'Document'), 'ready?', [], (TMP_1 = function(){var self = TMP_1.$$s || this, TMP_2, TMP_3, TMP_4, TMP_5, TMP_6, TMP_7, TMP_8, TMP_forward_url_9, header = nil, $writer = nil;
+  return $send(Opal.const_get_relative($nesting, 'Document'), 'ready?', [], (TMP_1 = function(){var self = TMP_1.$$s || this, TMP_2, TMP_3, TMP_4, TMP_5, TMP_6, TMP_7, TMP_forward_url_8, $writer = nil;
     if (self.height == null) self.height = nil;
     if (self.width == null) self.width = nil;
     if (self.text == null) self.text = nil;
@@ -3305,24 +3246,23 @@ Opal.modules["settings"] = function(Opal) {
     self.width = Opal.const_get_relative($nesting, 'Document').$width();
     self.text = Opal.const_get_relative($nesting, 'Text').$new();
     self.debug = Opal.const_get_relative($nesting, 'Element').$find("#debug_info");
-    header = Opal.const_get_relative($nesting, 'Document').$find("#header");
-    
-    $writer = [$rb_plus("FireOff Web", "" + " (H:" + (self.height) + " W:" + (self.width) + ")")];
-    $send(header, 'text=', Opal.to_a($writer));
-    $writer[$rb_minus($writer["length"], 1)];;
     Opal.const_get_relative($nesting, 'Element').$find("tr").$css("height", $rb_divide(self.height, 16));
     Opal.const_get_relative($nesting, 'Element').$find("body").$css("font-size", "" + ($rb_divide(self.width, 25)) + "px");
-    $send(Opal.const_get_relative($nesting, 'Element').$find("#offNow"), 'on', ["click"], (TMP_2 = function(event){var self = TMP_2.$$s || this;
+    $send(Opal.const_get_relative($nesting, 'Element').$find(".quick"), 'on', ["click"], (TMP_2 = function(event){var self = TMP_2.$$s || this, $writer = nil;
+      if (self.text == null) self.text = nil;
+      if (self.debug == null) self.debug = nil;
 if (event == null) event = nil;
-    return self.$forward_url("OFF")}, TMP_2.$$s = self, TMP_2.$$arity = 1, TMP_2));
-    $send(Opal.const_get_relative($nesting, 'Element').$find("#onNow"), 'on', ["click"], (TMP_3 = function(event){var self = TMP_3.$$s || this;
-if (event == null) event = nil;
-    return self.$forward_url("ON")}, TMP_3.$$s = self, TMP_3.$$arity = 1, TMP_3));
+    
+      self.$forward_url(event.$element().$text());
+      
+      $writer = [self.text.$sms_message()];
+      $send(self.debug, 'text=', Opal.to_a($writer));
+      return $writer[$rb_minus($writer["length"], 1)];;}, TMP_2.$$s = self, TMP_2.$$arity = 1, TMP_2));
     Opal.const_get_relative($nesting, 'Element').$find("" + "#fh" + (self.text.$hour_from())).$css("background-color", Opal.const_get_relative($nesting, 'ACTIVE_COLOUR'));
     Opal.const_get_relative($nesting, 'Element').$find("" + "#fm" + (self.text.$min_from())).$css("background-color", Opal.const_get_relative($nesting, 'ACTIVE_COLOUR'));
     Opal.const_get_relative($nesting, 'Element').$find("" + "#th" + (self.text.$hour_to())).$css("background-color", Opal.const_get_relative($nesting, 'ACTIVE_COLOUR'));
     Opal.const_get_relative($nesting, 'Element').$find("" + "#tm" + (self.text.$min_to())).$css("background-color", Opal.const_get_relative($nesting, 'ACTIVE_COLOUR'));
-    $send(Opal.const_get_relative($nesting, 'Element').$find(".fh"), 'on', ["click"], (TMP_4 = function(event){var self = TMP_4.$$s || this;
+    $send(Opal.const_get_relative($nesting, 'Element').$find(".fh"), 'on', ["click"], (TMP_3 = function(event){var self = TMP_3.$$s || this, $writer = nil;
       if (self.text == null) self.text = nil;
       if (self.debug == null) self.debug = nil;
 if (event == null) event = nil;
@@ -3334,10 +3274,10 @@ if (event == null) event = nil;
       $send(self.text, 'hour_from=', Opal.to_a($writer));
       $writer[$rb_minus($writer["length"], 1)];;
       
-      $writer = [self.text.$sanity()];
+      $writer = [self.text.$sms_message()];
       $send(self.debug, 'text=', Opal.to_a($writer));
-      return $writer[$rb_minus($writer["length"], 1)];;}, TMP_4.$$s = self, TMP_4.$$arity = 1, TMP_4));
-    $send(Opal.const_get_relative($nesting, 'Element').$find(".fm"), 'on', ["click"], (TMP_5 = function(event){var self = TMP_5.$$s || this;
+      return $writer[$rb_minus($writer["length"], 1)];;}, TMP_3.$$s = self, TMP_3.$$arity = 1, TMP_3));
+    $send(Opal.const_get_relative($nesting, 'Element').$find(".fm"), 'on', ["click"], (TMP_4 = function(event){var self = TMP_4.$$s || this, $writer = nil;
       if (self.text == null) self.text = nil;
       if (self.debug == null) self.debug = nil;
 if (event == null) event = nil;
@@ -3349,10 +3289,10 @@ if (event == null) event = nil;
       $send(self.text, 'min_from=', Opal.to_a($writer));
       $writer[$rb_minus($writer["length"], 1)];;
       
-      $writer = [self.text.$min_from()];
+      $writer = [self.text.$sms_message()];
       $send(self.debug, 'text=', Opal.to_a($writer));
-      return $writer[$rb_minus($writer["length"], 1)];;}, TMP_5.$$s = self, TMP_5.$$arity = 1, TMP_5));
-    $send(Opal.const_get_relative($nesting, 'Element').$find(".th"), 'on', ["click"], (TMP_6 = function(event){var self = TMP_6.$$s || this;
+      return $writer[$rb_minus($writer["length"], 1)];;}, TMP_4.$$s = self, TMP_4.$$arity = 1, TMP_4));
+    $send(Opal.const_get_relative($nesting, 'Element').$find(".th"), 'on', ["click"], (TMP_5 = function(event){var self = TMP_5.$$s || this, $writer = nil;
       if (self.text == null) self.text = nil;
       if (self.debug == null) self.debug = nil;
 if (event == null) event = nil;
@@ -3364,10 +3304,10 @@ if (event == null) event = nil;
       $send(self.text, 'hour_to=', Opal.to_a($writer));
       $writer[$rb_minus($writer["length"], 1)];;
       
-      $writer = [event.$element().$text()];
+      $writer = [self.text.$sms_message()];
       $send(self.debug, 'text=', Opal.to_a($writer));
-      return $writer[$rb_minus($writer["length"], 1)];;}, TMP_6.$$s = self, TMP_6.$$arity = 1, TMP_6));
-    $send(Opal.const_get_relative($nesting, 'Element').$find(".tm"), 'on', ["click"], (TMP_7 = function(event){var self = TMP_7.$$s || this;
+      return $writer[$rb_minus($writer["length"], 1)];;}, TMP_5.$$s = self, TMP_5.$$arity = 1, TMP_5));
+    $send(Opal.const_get_relative($nesting, 'Element').$find(".tm"), 'on', ["click"], (TMP_6 = function(event){var self = TMP_6.$$s || this, $writer = nil;
       if (self.text == null) self.text = nil;
       if (self.debug == null) self.debug = nil;
 if (event == null) event = nil;
@@ -3379,17 +3319,17 @@ if (event == null) event = nil;
       $send(self.text, 'min_to=', Opal.to_a($writer));
       $writer[$rb_minus($writer["length"], 1)];;
       
-      $writer = [event.$element().$text()];
+      $writer = [self.text.$sms_message()];
       $send(self.debug, 'text=', Opal.to_a($writer));
-      return $writer[$rb_minus($writer["length"], 1)];;}, TMP_7.$$s = self, TMP_7.$$arity = 1, TMP_7));
-    $send(Opal.const_get_relative($nesting, 'Element').$find(".book"), 'on', ["click"], (TMP_8 = function(event){var self = TMP_8.$$s || this;
+      return $writer[$rb_minus($writer["length"], 1)];;}, TMP_6.$$s = self, TMP_6.$$arity = 1, TMP_6));
+    $send(Opal.const_get_relative($nesting, 'Element').$find(".book"), 'on', ["click"], (TMP_7 = function(event){var self = TMP_7.$$s || this;
 if (event == null) event = nil;
-    return self.$forward_url(event.$element().$text())}, TMP_8.$$s = self, TMP_8.$$arity = 1, TMP_8));
+    return self.$forward_url(event.$element().$text())}, TMP_7.$$s = self, TMP_7.$$arity = 1, TMP_7));
     
-    $writer = ["" + (self.text.$hour_from()) + " " + (self.text.$min_from()) + " " + (self.text.$hour_to()) + " " + (self.text.$min_to())];
+    $writer = [self.text.$sms_message()];
     $send(self.debug, 'text=', Opal.to_a($writer));
     $writer[$rb_minus($writer["length"], 1)];;
-    return (Opal.def(self, '$forward_url', TMP_forward_url_9 = function $$forward_url(code) {
+    return (Opal.def(self, '$forward_url', TMP_forward_url_8 = function $$forward_url(code) {
       var self = this, $writer = nil, url = nil;
       if (self.text == null) self.text = nil;
 
@@ -3401,5 +3341,5 @@ if (event == null) event = nil;
       url = "" + "sms:07860055401?body=" + (self.text.$sms_message());
       self.$puts(url);
       return window.location = encodeURI(url);
-    }, TMP_forward_url_9.$$arity = 1), nil) && 'forward_url';}, TMP_1.$$s = self, TMP_1.$$arity = 0, TMP_1));
+    }, TMP_forward_url_8.$$arity = 1), nil) && 'forward_url';}, TMP_1.$$s = self, TMP_1.$$arity = 0, TMP_1));
 })(Opal);

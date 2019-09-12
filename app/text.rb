@@ -9,9 +9,10 @@ class Text
   attr_accessor :day_from
   attr_accessor :day_to
 
-  CODES = {"O" => "OFF", "W" => "Work", "S" => "Sick", "T" => "Training", "DEL" => "Deletion"}
+  # CODES = {"O" => "OFF", "W" => "Work", "S" => "Sick", "T" => "Training", "DEL" => "Deletion"}
 
   def initialize
+    @code = 'O'
     @pin_code = '52226'
 
     t = Time.now
@@ -33,46 +34,12 @@ class Text
     end
   end
 
-  def sanity
-    user = "#{display_name}: " if display_name
-    "#{user}Booking #{CODES[code] || code} from #{date_from.strftime("%H%M")} #{sanity_day date_from} until #{date_to.strftime("%H%M")} #{sanity_day date_to}"
-  end
-
   def dates_wonky?
     date_from >= date_to
   end
 
-  # def display_name
-  #   Settings.pin_codes.count > 1 ? @pin_code.name : nil
-  # end
-
-  def sanity?
-    !quick_fire? && Settings.sanity?
-  end
-
-  def sanity_day(in_date)
-
-    s_day = in_date.yday
-    today = Time.now.yday
-    s_day += 365 if s_day < today
-    case s_day - today
-    when 0
-      "today"
-    when 1
-      "tomorrow"
-    when 2
-      "the day after tomorrow"
-    else
-      in_date.strftime("%e %B")
-    end
-  end
-
   def quick_fire?
-    ['ON', 'OFF'].include? code
-  end
-
-  def full_message(in_code)
-    sanity + "\n\n" + sms_message(in_code)
+    ['On', 'Of'].include? code[0,2]
   end
 
   def date_from
@@ -107,21 +74,21 @@ class Text
     end
   end
 
-  def from_datepicker_title
-    if day_from
-      "From: #{(Time.now+(day_from*3600*24)).strftime("%e %B")}"
-    else
-      "From: #{sanity_day(date_from).capitalize}"
-    end
-  end
+  # def from_datepicker_title
+  #   if day_from
+  #     "From: #{(Time.now+(day_from*3600*24)).strftime("%e %B")}"
+  #   else
+  #     "From: #{sanity_day(date_from).capitalize}"
+  #   end
+  # end
 
-  def to_datepicker_title
-    if day_to
-      "To: #{(Time.now+(day_to*3600*24)).strftime("%e %B")}"
-    else
-      "To: #{sanity_day(date_to).capitalize}"
-    end
-  end
+  # def to_datepicker_title
+  #   if day_to
+  #     "To: #{(Time.now+(day_to*3600*24)).strftime("%e %B")}"
+  #   else
+  #     "To: #{sanity_day(date_to).capitalize}"
+  #   end
+  # end
 
   def date_today
     Time.new.start_of_day
