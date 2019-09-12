@@ -13,11 +13,9 @@ Document.ready? do
 
   @debug = Element.find('#debug_info')
 
-  if !LocalStorage['tel'].length && LocalStorage['tel'].length > 0
-    Element.find('#tel').value = LocalStorage['tel']
-  else
-    Element.find('#tel').value = "07860055401"
-  end
+  LocalStorage['tel'] = "07860055401" unless LocalStorage['tel']
+
+  Element.find('#tel').value = LocalStorage['tel']
   Element.find('#pin').value = LocalStorage['pin']
 
   Element.find('tr').css('height', @height/16)
