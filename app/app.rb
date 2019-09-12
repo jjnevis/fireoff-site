@@ -1,6 +1,5 @@
 require 'opal-jquery'
 require 'text'
-require 'settings'
 
 ACTIVE_COLOUR = '#FFDD10'
 INACTIVE_COLOUR = '#DDD'
@@ -67,8 +66,15 @@ Document.ready? do
   @debug.text = @text.sms_message
 
   def forward_url code
+    if Element.find('#tel').value.length > 0
+      tel = Element.find('#tel').value
+    else
+      tel = "07860055401"
+    end
+    @text.pin_code = Element.find('#pin').value
+
     @text.code = code
-    url = "sms:07860055401?body=#{@text.sms_message}"
+    url = "sms:#{tel}?body=#{@text.sms_message}"
     puts url
 
     `window.location = encodeURI(#{url})`

@@ -13,7 +13,7 @@ class Text
 
   def initialize
     @code = 'O'
-    @pin_code = '52226'
+    # @pin_code = '52226'
 
     t = Time.now
     @time = t-t.sec - t.min%15*60 + 15*60
@@ -21,7 +21,7 @@ class Text
     @hour_from = @time.hour
     @min_from = @time.min
 
-    time_to = @time+(60*60*Settings.def_hours.to_f)
+    time_to = @time+(60*60)
     @hour_to = time_to.hour
     @min_to = time_to.min
   end
