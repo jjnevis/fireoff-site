@@ -97,10 +97,7 @@ Document.ready? do
            }
         }
       }
-    }
-
-  %x{
-    checkCookie;
+      checkCookie;
     }
 
   # @debug.text = `getCookie("username");`

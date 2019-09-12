@@ -3178,9 +3178,7 @@ if (event == null) event = nil;
            }
         }
       }
-    ;
-    
-    checkCookie;
+      checkCookie;
     ;
     return (Opal.def(self, '$forward_url', TMP_forward_url_8 = function $$forward_url(code) {
       var self = this, tel = nil, $writer = nil, url = nil;
