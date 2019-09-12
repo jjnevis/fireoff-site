@@ -3,7 +3,6 @@ require 'text'
 
 ACTIVE_COLOUR = '#FFDD10'
 INACTIVE_COLOUR = '#DDD'
-# MINS = [":00", ":15", ":30", ":45"]
 
 Document.ready? do
 
@@ -63,7 +62,21 @@ Document.ready? do
     forward_url event.element.text
   end
 
-  @debug.text = @text.sms_message
+  %x{
+    console.log("opal version is:");
+    console.log(#{ RUBY_ENGINE_VERSION });
+  }
+
+  %x{
+    document.cookie = "username=John Doe";
+  }
+
+
+  %x{
+    console.log(document.cookie);
+    }
+
+  @debug.text = `getCookie("username")`
 
   def forward_url code
     if Element.find('#tel').value.length > 0
@@ -75,7 +88,6 @@ Document.ready? do
 
     @text.code = code
     url = "sms:#{tel}?body=#{@text.sms_message}"
-    puts url
 
     `window.location = encodeURI(#{url})`
   end

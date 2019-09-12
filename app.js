@@ -3048,7 +3048,7 @@ Opal.modules["text"] = function(Opal) {
   }
   var TMP_1, self = Opal.top, $nesting = [], nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $send = Opal.send, $truthy = Opal.truthy;
 
-  Opal.add_stubs(['$require', '$ready?', '$height', '$width', '$new', '$find', '$css', '$/', '$on', '$forward_url', '$text', '$element', '$sms_message', '$text=', '$-', '$hour_from', '$min_from', '$hour_to', '$min_to', '$hour_from=', '$min_from=', '$hour_to=', '$min_to=', '$>', '$length', '$value', '$pin_code=', '$code=', '$puts']);
+  Opal.add_stubs(['$require', '$ready?', '$height', '$width', '$new', '$find', '$css', '$/', '$on', '$forward_url', '$text', '$element', '$sms_message', '$text=', '$-', '$hour_from', '$min_from', '$hour_to', '$min_to', '$hour_from=', '$min_from=', '$hour_to=', '$min_to=', '$>', '$length', '$value', '$pin_code=', '$code=']);
   
   self.$require("opal-jquery");
   self.$require("text");
@@ -3145,7 +3145,17 @@ if (event == null) event = nil;
 if (event == null) event = nil;
     return self.$forward_url(event.$element().$text())}, TMP_7.$$s = self, TMP_7.$$arity = 1, TMP_7));
     
-    $writer = [self.text.$sms_message()];
+    console.log("opal version is:");
+    console.log(Opal.const_get_relative($nesting, 'RUBY_ENGINE_VERSION'));
+  ;
+    
+    document.cookie = "username=John Doe";
+  ;
+    
+    console.log(document.cookie);
+    ;
+    
+    $writer = [getCookie("username")];
     $send(self.debug, 'text=', Opal.to_a($writer));
     $writer[$rb_minus($writer["length"], 1)];;
     return (Opal.def(self, '$forward_url', TMP_forward_url_8 = function $$forward_url(code) {
@@ -3167,7 +3177,6 @@ if (event == null) event = nil;
       $send(self.text, 'code=', Opal.to_a($writer));
       $writer[$rb_minus($writer["length"], 1)];;
       url = "" + "sms:" + (tel) + "?body=" + (self.text.$sms_message());
-      self.$puts(url);
       return window.location = encodeURI(url);
     }, TMP_forward_url_8.$$arity = 1), nil) && 'forward_url';}, TMP_1.$$s = self, TMP_1.$$arity = 0, TMP_1));
 })(Opal);
