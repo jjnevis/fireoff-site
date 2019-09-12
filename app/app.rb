@@ -97,7 +97,7 @@ Document.ready? do
            }
         }
       }
-      checkCookie;
+      checkCookie();
     }
 
   # @debug.text = `getCookie("username");`
