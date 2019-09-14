@@ -16,9 +16,9 @@ Document.ready? do
   Element.find('#tel').value = (LocalStorage['tel'] or "07860055401")
   Element.find('#pin').value = (LocalStorage['pin'] or "00000")
 
-  Element.find('#tel').css('font-size', "#{@width/14}px")
+  Element.find('#tel').css('font-size', "#{@width/16}px")
   Element.find('#tel').css('width', "#{@width/2}px")
-  Element.find('#pin').css('font-size', "#{@width/14}px")
+  Element.find('#pin').css('font-size', "#{@width/16}px")
   Element.find('#pin').css('width', "#{@width/5}px")
 
   Element.find('tr').css('height', @height/16)
