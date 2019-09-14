@@ -3104,16 +3104,16 @@ Opal.modules["text"] = function(Opal) {
   }
   var TMP_1, self = Opal.top, $nesting = [], nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $send = Opal.send, $truthy = Opal.truthy;
 
-  Opal.add_stubs(['$require', '$ready?', '$height', '$width', '$new', '$find', '$[]', '$[]=', '$-', '$value=', '$css', '$/', '$on', '$forward_url', '$text', '$element', '$sms_message', '$text=', '$hour_from', '$min_from', '$hour_to', '$min_to', '$hour_from=', '$min_from=', '$hour_to=', '$min_to=', '$update_static_data', '$value', '$pin_code=', '$code=']);
+  Opal.add_stubs(['$require', '$ready?', '$height', '$width', '$new', '$find', '$[]', '$value=', '$-', '$css', '$/', '$on', '$forward_url', '$text', '$element', '$sms_message', '$text=', '$hour_from', '$min_from', '$hour_to', '$min_to', '$hour_from=', '$min_from=', '$hour_to=', '$min_to=', '$update_static_data', '$value', '$pin_code=', '$code=', '$[]=']);
   
   self.$require("opal-jquery");
   self.$require("opal/jquery/local_storage");
   self.$require("text");
   Opal.const_set($nesting[0], 'ACTIVE_COLOUR', "#FFDD10");
   Opal.const_set($nesting[0], 'INACTIVE_COLOUR', "#DDD");
-  return $send(Opal.const_get_relative($nesting, 'Document'), 'ready?', [], (TMP_1 = function(){var self = TMP_1.$$s || this, TMP_2, TMP_3, TMP_4, TMP_5, TMP_6, TMP_7, TMP_forward_url_8, TMP_update_static_data_9, $writer = nil;
-    if (self.height == null) self.height = nil;
+  return $send(Opal.const_get_relative($nesting, 'Document'), 'ready?', [], (TMP_1 = function(){var self = TMP_1.$$s || this, $a, TMP_2, TMP_3, TMP_4, TMP_5, TMP_6, TMP_7, TMP_forward_url_8, TMP_update_static_data_9, $writer = nil;
     if (self.width == null) self.width = nil;
+    if (self.height == null) self.height = nil;
     if (self.text == null) self.text = nil;
 
   
@@ -3121,28 +3121,18 @@ Opal.modules["text"] = function(Opal) {
     self.width = Opal.const_get_relative($nesting, 'Document').$width();
     self.text = Opal.const_get_relative($nesting, 'Text').$new();
     self.debug = Opal.const_get_relative($nesting, 'Element').$find("#debug_info");
-    if ($truthy(Opal.const_get_relative($nesting, 'LocalStorage')['$[]']("tel"))) {
-      } else {
-      
-      $writer = ["tel", "07860055401"];
-      $send(Opal.const_get_relative($nesting, 'LocalStorage'), '[]=', Opal.to_a($writer));
-      $writer[$rb_minus($writer["length"], 1)];
-    };
-    if ($truthy(Opal.const_get_relative($nesting, 'LocalStorage')['$[]']("tel"))) {
-      } else {
-      
-      $writer = ["pin", "00000"];
-      $send(Opal.const_get_relative($nesting, 'LocalStorage'), '[]=', Opal.to_a($writer));
-      $writer[$rb_minus($writer["length"], 1)];
-    };
     
-    $writer = [Opal.const_get_relative($nesting, 'LocalStorage')['$[]']("tel")];
+    $writer = [($truthy($a = Opal.const_get_relative($nesting, 'LocalStorage')['$[]']("tel")) ? $a : "07860055401")];
     $send(Opal.const_get_relative($nesting, 'Element').$find("#tel"), 'value=', Opal.to_a($writer));
     $writer[$rb_minus($writer["length"], 1)];;
     
-    $writer = [Opal.const_get_relative($nesting, 'LocalStorage')['$[]']("pin")];
+    $writer = [($truthy($a = Opal.const_get_relative($nesting, 'LocalStorage')['$[]']("pin")) ? $a : "00000")];
     $send(Opal.const_get_relative($nesting, 'Element').$find("#pin"), 'value=', Opal.to_a($writer));
     $writer[$rb_minus($writer["length"], 1)];;
+    Opal.const_get_relative($nesting, 'Element').$find("#tel").$css("font-size", "" + ($rb_divide(self.width, 25)) + "px");
+    Opal.const_get_relative($nesting, 'Element').$find("#tel").$css("width", "" + ($rb_divide(self.width, 3)) + "px");
+    Opal.const_get_relative($nesting, 'Element').$find("#pin").$css("font-size", "" + ($rb_divide(self.width, 25)) + "px");
+    Opal.const_get_relative($nesting, 'Element').$find("#pin").$css("width", "" + ($rb_divide(self.width, 5)) + "px");
     Opal.const_get_relative($nesting, 'Element').$find("tr").$css("height", $rb_divide(self.height, 16));
     Opal.const_get_relative($nesting, 'Element').$find("body").$css("font-size", "" + ($rb_divide(self.width, 25)) + "px");
     $send(Opal.const_get_relative($nesting, 'Element').$find(".quick"), 'on', ["click"], (TMP_2 = function(event){var self = TMP_2.$$s || this;
