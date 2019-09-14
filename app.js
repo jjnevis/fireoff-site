@@ -3129,9 +3129,9 @@ Opal.modules["text"] = function(Opal) {
     $writer = [($truthy($a = Opal.const_get_relative($nesting, 'LocalStorage')['$[]']("pin")) ? $a : "00000")];
     $send(Opal.const_get_relative($nesting, 'Element').$find("#pin"), 'value=', Opal.to_a($writer));
     $writer[$rb_minus($writer["length"], 1)];;
-    Opal.const_get_relative($nesting, 'Element').$find("#tel").$css("font-size", "" + ($rb_divide(self.width, 25)) + "px");
-    Opal.const_get_relative($nesting, 'Element').$find("#tel").$css("width", "" + ($rb_divide(self.width, 3)) + "px");
-    Opal.const_get_relative($nesting, 'Element').$find("#pin").$css("font-size", "" + ($rb_divide(self.width, 25)) + "px");
+    Opal.const_get_relative($nesting, 'Element').$find("#tel").$css("font-size", "" + ($rb_divide(self.width, 18)) + "px");
+    Opal.const_get_relative($nesting, 'Element').$find("#tel").$css("width", "" + ($rb_divide(self.width, 2)) + "px");
+    Opal.const_get_relative($nesting, 'Element').$find("#pin").$css("font-size", "" + ($rb_divide(self.width, 18)) + "px");
     Opal.const_get_relative($nesting, 'Element').$find("#pin").$css("width", "" + ($rb_divide(self.width, 5)) + "px");
     Opal.const_get_relative($nesting, 'Element').$find("tr").$css("height", $rb_divide(self.height, 16));
     Opal.const_get_relative($nesting, 'Element').$find("body").$css("font-size", "" + ($rb_divide(self.width, 25)) + "px");
