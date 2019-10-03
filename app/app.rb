@@ -104,9 +104,9 @@ Document.ready? do
       pin = LocalStorage['pin'] = Element.find('#pin').value
 
       if ['On', 'Of'].include? code[0,2]
-        url = "sms:#{tel}?body=#{pin} #{code}"
+        url = "sms:#{tel};?&body=#{pin} #{code}"
       else
-        url = "sms:#{tel}?body=#{pin} #{sms_message} #{code}"
+        url = "sms:#{tel};?&body=#{pin} #{sms_message} #{code}"
       end
 
       `window.location = encodeURI(#{url})`

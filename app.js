@@ -3123,9 +3123,9 @@ if (event == null) event = nil;
         tel = (($writer = ["tel", Opal.const_get_relative($nesting, 'Element').$find("#tel").$value()]), $send(Opal.const_get_relative($nesting, 'LocalStorage'), '[]=', Opal.to_a($writer)), $writer[$rb_minus($writer["length"], 1)]);
         pin = (($writer = ["pin", Opal.const_get_relative($nesting, 'Element').$find("#pin").$value()]), $send(Opal.const_get_relative($nesting, 'LocalStorage'), '[]=', Opal.to_a($writer)), $writer[$rb_minus($writer["length"], 1)]);
         if ($truthy(["On", "Of"]['$include?'](code['$[]'](0, 2)))) {
-          url = "" + "sms:" + (tel) + "?body=" + (pin) + " " + (code)
+          url = "" + "sms:" + (tel) + ";?&body=" + (pin) + " " + (code)
           } else {
-          url = "" + "sms:" + (tel) + "?body=" + (pin) + " " + (self.$sms_message()) + " " + (code)
+          url = "" + "sms:" + (tel) + ";?&body=" + (pin) + " " + (self.$sms_message()) + " " + (code)
         };
         return window.location = encodeURI(url);
       }
